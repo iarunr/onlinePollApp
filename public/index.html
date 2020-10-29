@@ -15,34 +15,36 @@
         <h1 class="text-center">Real Time Poll Voting</h1>
         <p class="text-center">By <a href="#">Ahmad Tarabein</a></p>
         <hr>
-        <form action="/polls" method="POST">
+        <form action="/polls" method="POST" id="form">
             <div class="custom-control custom-radio">
-                <input type="radio" id="Windows" value="Windows" name="OS" class="custom-control-input">
+                <input required type="radio" id="Windows" value="Windows" name="OS"
+                    class="custom-control-input">
                 <label class="custom-control-label" for="Windows">Windows</label>
             </div>
 
             <div class="custom-control custom-radio">
-                <input type="radio" id="Linux" value="Linux" name="OS" class="custom-control-input">
+                <input required type="radio" id="Linux" value="Linux" name="OS" class="custom-control-input">
                 <label class="custom-control-label" for="Linux">Linux</label>
             </div>
 
             <div class="custom-control custom-radio">
-                <input type="radio" id="MacOS" value="MacOS" name="OS" class="custom-control-input">
+                <input required type="radio" id="MacOS" value="MacOS" name="OS" class="custom-control-input">
                 <label class="custom-control-label" for="MacOS">MacOS</label>
             </div>
 
             <div class="custom-control custom-radio">
-                <input type="radio" id="Android" value="Android" name="OS" class="custom-control-input">
+                <input required type="radio" id="Android" value="Android" name="OS"
+                    class="custom-control-input">
                 <label class="custom-control-label" for="Android">Android</label>
             </div>
 
             <div class="custom-control custom-radio">
-                <input type="radio" id="Ios" value="Ios" name="OS" class="custom-control-input">
+                <input required type="radio" id="Ios" value="Ios" name="OS" class="custom-control-input">
                 <label class="custom-control-label" for="Ios">Ios</label>
             </div>
 
             <div>
-                <button type="submit" class="btn btn-outline-primary my-2">Vote!</button>
+                <button id="btn" type="submit" class="btn btn-outline-primary my-2">Vote!</button>
                 <span> Total Votes: </span>
             </div>
         </form>

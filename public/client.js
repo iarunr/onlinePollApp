@@ -1,5 +1,7 @@
 const socket = io();
 var ctx = document.getElementById("myChart").getContext("2d");
+const btn = document.getElementById("btn");
+const form = document.getElementById("form");
 
 var myChart = new Chart(ctx, {
   type: "bar",
@@ -39,6 +41,25 @@ var myChart = new Chart(ctx, {
       ],
     },
   },
+});
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const voted = document.querySelector("input[name=OS]:checked").value;
+  const choice = { os: voted };
+  console.log(choice);
+  const url = `${window.location.href}polls`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(choice),
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+  });
+
+  const data = await res.json();
+  console.log(data);
 });
 
 // function myFunction() {

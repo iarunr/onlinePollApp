@@ -8,15 +8,22 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const vote = req.body.OS;
+  const vote = req.body.os;
+  console.log(vote);
   const userIP = await ip.address();
+  console.log(userIP);
 
   const newVote = new User({
     vote: vote,
-    ipAddress: Number(userIP),
+    ipAddress: userIP,
   });
 
-  res.redirect("/");
+  const voted = await newVote.save();
+  console.log("vote saved!");
+
+  res.send({ result: "voted!" });
 });
+
+router.get("/");
 
 module.exports = router;
