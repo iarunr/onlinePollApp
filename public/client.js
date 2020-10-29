@@ -3,6 +3,10 @@ var ctx = document.getElementById("myChart").getContext("2d");
 const btn = document.getElementById("btn");
 const form = document.getElementById("form");
 
+socket.on("user-connected", (data) => {
+  console.log(data.msg);
+});
+
 var myChart = new Chart(ctx, {
   type: "bar",
   data: {
@@ -43,6 +47,13 @@ var myChart = new Chart(ctx, {
   },
 });
 
+async function loadData() {
+  const res = await fetch(`${window.location.href}polls`);
+  const data = await res.json();
+  console.log(data);
+}
+loadData();
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const voted = document.querySelector("input[name=OS]:checked").value;
@@ -59,7 +70,9 @@ form.addEventListener("submit", async (e) => {
   });
 
   const data = await res.json();
-  console.log(data);
+  if (res.status == 200) {
+  } else {
+  }
 });
 
 // function myFunction() {

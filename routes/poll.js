@@ -3,8 +3,37 @@ const router = express.Router();
 const User = require("../Models/Vote");
 const ip = require("ip");
 
-router.get("/", (req, res) => {
-  res.send("Polls");
+router.get("/", async (req, res) => {
+  const data = await User.find({});
+  console.log(data);
+
+  const voting = data.map((item) => {
+    return {
+      vote: item.vote,
+    };
+  });
+
+  const totalVotes = voting.length;
+
+  const android = voting.filter((item) => {
+    return item.vote === "Android";
+  });
+
+  const windows = voting.filter((item) => {
+    return item.vote === "Windows";
+  });
+
+  const linux = voting.filter((item) => {
+    return item.vote === "Linux";
+  });
+
+  const macOS = voting.filter((item) => {
+    return item.vote === "MacOS";
+  });
+
+  const ios = voting.filter((item) => {
+    return item.vote === "Ios";
+  });
 });
 
 router.post("/", async (req, res) => {
@@ -23,7 +52,5 @@ router.post("/", async (req, res) => {
 
   res.send({ result: "voted!" });
 });
-
-router.get("/");
 
 module.exports = router;
