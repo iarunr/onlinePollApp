@@ -5,7 +5,6 @@ const path = require("path");
 const http = require("http").createServer(app); // app server
 const io = require("socket.io")(http); //socket.io server
 require("dotenv").config();
-
 //connect to MongoDB
 const { connectDB } = require("./config/db_connect");
 connectDB();
