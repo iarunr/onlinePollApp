@@ -5,5 +5,13 @@ module.exports = function (io) {
     socket.broadcast.emit("user-connected", {
       msg: "new User connected!",
     });
+
+    socket.on("user-voted", (data) => {
+      console.log(data);
+      socket.broadcast.emit("vote-complete", {
+        vote: data.vote,
+        total: data.total,
+      });
+    });
   });
 };

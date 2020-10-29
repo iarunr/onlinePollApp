@@ -2,6 +2,9 @@ const socket = io();
 var ctx = document.getElementById("myChart").getContext("2d");
 const btn = document.getElementById("btn");
 const form = document.getElementById("form");
+const totalVotes = document.getElementById("total-votes");
+
+var total;
 
 socket.on("user-connected", (data) => {
   console.log(data.msg);
@@ -50,7 +53,19 @@ var myChart = new Chart(ctx, {
 async function loadData() {
   const res = await fetch(`${window.location.href}polls`);
   const data = await res.json();
-  console.log(data);
+  if (res.status == 200) {
+    console.log(data);
+    total = data.totalVotes;
+    totalVotes.innerHTML = `Total Votes: ${total}`;
+    myChart.data.datasets[0].data[0] = data.windows;
+    myChart.data.datasets[0].data[1] = data.linux;
+    myChart.data.datasets[0].data[2] = data.macOS;
+    myChart.data.datasets[0].data[3] = data.android;
+    myChart.data.datasets[0].data[4] = data.ios;
+    myChart.update();
+  } else {
+    console.log("server error!");
+  }
 }
 loadData();
 
@@ -58,7 +73,31 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const voted = document.querySelector("input[name=OS]:checked").value;
   const choice = { os: voted };
-  console.log(choice);
+  var selection;
+  //console.log(choice);
+
+  switch (choice.os) {
+    case "Windows":
+      selection = 0;
+      break;
+
+    case "Linux":
+      selection = 1;
+      break;
+
+    case "MacOS":
+      selection = 2;
+      break;
+
+    case "Android":
+      selection = 3;
+      break;
+
+    case "Ios":
+      selection = 4;
+      break;
+  }
+
   const url = `${window.location.href}polls`;
 
   const res = await fetch(url, {
@@ -71,11 +110,21 @@ form.addEventListener("submit", async (e) => {
 
   const data = await res.json();
   if (res.status == 200) {
+    myChart.data.datasets[0].data[selection]++;
+    myChart.update();
+    total++;
+    totalVotes.innerHTML = `Total Votes: ${total}`;
+    socket.emit("user-voted", {
+      vote: selection,
+      total,
+    });
   } else {
+    console.log("an error occured!");
   }
 });
 
-// function myFunction() {
-//   myChart.data.datasets[0].data[0] = 5;
-//   myChart.update();
-// }
+socket.on("vote-complete", (data) => {
+  myChart.data.datasets[0].data[data.vote]++;
+  myChart.update();
+  totalVotes.innerHTML = `Total Votes: ${data.total}`;
+});
