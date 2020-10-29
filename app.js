@@ -9,9 +9,6 @@ require("dotenv").config();
 const { connectDB } = require("./config/db_connect");
 connectDB();
 
-// const { serverSocket } = require("./config/socket");
-// serverSocket();
-
 // body parser and cors
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,6 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 //routes
 app.use("/polls", require("./routes/poll"));
 
+// the main real-time socket.io code
 require("./config/socket")(io);
 
 const PORT = process.env.PORT || 5000;

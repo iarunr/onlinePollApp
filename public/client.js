@@ -54,7 +54,7 @@ async function loadData() {
   const res = await fetch(`${window.location.href}polls`);
   const data = await res.json();
   if (res.status == 200) {
-    console.log(data);
+    //console.log(data);
     total = data.totalVotes;
     totalVotes.innerHTML = `Total Votes: ${total}`;
     myChart.data.datasets[0].data[0] = data.windows;
@@ -118,8 +118,11 @@ form.addEventListener("submit", async (e) => {
       vote: selection,
       total,
     });
+  } else if (res.status === 406) {
+    document.getElementById("error-msg").innerHTML = data.msg;
+    document.getElementById("error-msg").style.display = "block";
   } else {
-    console.log("an error occured!");
+    window.location.href = "/polls/error";
   }
 });
 

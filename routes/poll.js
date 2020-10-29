@@ -47,7 +47,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const vote = req.body.os;
-  console.log(vote);
+  console.log(`Vote: ${vote}`);
   const userIP = await ip.address();
   console.log(userIP);
 
@@ -56,10 +56,25 @@ router.post("/", async (req, res) => {
     ipAddress: userIP,
   });
 
-  const voted = await newVote.save();
-  console.log("vote saved!");
+  const checkIP = await User.find({ ipAddress: userIP });
+  //console.log(checkIP);
 
-  res.status(200).send({ result: "voted!" });
+  //If this is not a unqiue IP(user voted before!)
+  if (checkIP.length !== 0) {
+    console.log("already voted");
+    res.status(406).send({
+      msg: "You have already voted before!",
+    });
+    //if this is a unique IP(new voter!)
+  } else {
+    const voted = await newVote.save();
+    console.log("vote saved!");
+    res.status(200).send({ result: "voted!" });
+  }
+});
+
+router.get("/error", (req, res) => {
+  res.send("Server Error. Please try again!");
 });
 
 module.exports = router;

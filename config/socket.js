@@ -7,7 +7,7 @@ module.exports = function (io) {
     });
 
     socket.on("user-voted", (data) => {
-      console.log(data);
+      //console.log(data);
       socket.broadcast.emit("vote-complete", {
         vote: data.vote,
         total: data.total,
