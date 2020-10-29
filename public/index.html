@@ -14,7 +14,7 @@
     <div class="container">
         <h1 class="text-center">Real Time Poll Voting</h1>
         <p class="text-center">By <a href="#">Ahmad Tarabein</a></p>
-
+        <hr>
         <form action="/polls" method="POST">
             <div class="custom-control custom-radio">
                 <input type="radio" id="Windows" value="Windows" name="OS" class="custom-control-input">
@@ -41,12 +41,19 @@
                 <label class="custom-control-label" for="Ios">Ios</label>
             </div>
 
-            <button type="submit" class="btn btn-outline-primary my-2">Vote!</button>
+            <div>
+                <button type="submit" class="btn btn-outline-primary my-2">Vote!</button>
+                <span> Total Votes: </span>
+            </div>
         </form>
         <div style="width: 60%;">
             <canvas id="myChart" width="400" height="300"></canvas>
         </div>
     </div>
+
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
