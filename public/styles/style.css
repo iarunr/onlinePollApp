@@ -1,0 +1,20 @@
+#error-msg {
+  display: none;
+  border: 1px solid black;
+  padding: 8px;
+  width: 25%;
+  background: #d70000;
+  color: white;
+}
+
+#voteChart {
+  width: 600px;
+  height: 480px;
+}
+
+@media only screen and (max-device-width: 735px) {
+  #voteChart {
+    width: auto;
+  }
+}
+/*# sourceMappingURL=style.css.map */

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>socket voting</title>
@@ -13,7 +14,7 @@
 <body>
     <div class="container">
         <h1 class="text-center">Real Time Poll Voting</h1>
-        <p class="text-center">By <a href="#">Ahmad Tarabein</a></p>
+        <p class="text-center">By <a href="https://github.com/ahmadbenos">Ahmad Tarabein</a></p>
         <hr>
         <form action="/polls" method="POST" id="form">
             <div class="custom-control custom-radio">
@@ -48,16 +49,12 @@
                 <span id="total-votes"> Total Votes: </span>
             </div>
         </form>
-        <p id="error-msg"
-            style="display: none; border: 1px solid black; padding: 8px; width: 25%; background: #d70000; color: white;">
-        </p>
+        <p id="error-msg"></p>
 
-        <div style="width: 60%;">
-            <canvas id="myChart" width="400" height="300"></canvas>
+        <div id="voteChart">
+            <canvas id="myChart" height="480" width="600"></canvas>
         </div>
     </div>
-
-
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
