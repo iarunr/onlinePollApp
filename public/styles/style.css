@@ -12,9 +12,21 @@
   height: 480px;
 }
 
+@media only screen and (max-device-width: 985px) {
+  #error-msg {
+    width: 70%;
+  }
+}
+
 @media only screen and (max-device-width: 735px) {
   #voteChart {
     width: auto;
+  }
+}
+
+@media only screen and (max-device-width: 435px) {
+  #error-msg {
+    width: 70%;
   }
 }
 /*# sourceMappingURL=style.css.map */
