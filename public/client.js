@@ -108,6 +108,7 @@ form.addEventListener("submit", async (e) => {
     }),
   });
 
+  //get response
   const data = await res.json();
   if (res.status == 200) {
     myChart.data.datasets[0].data[selection]++;
