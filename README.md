@@ -1,4 +1,3 @@
-<b> Live Demo: <a href="https://realtime-poll-voting.glitch.me/">https://realtime-poll-voting.glitch.me/</a></b>
 <h1>Description</h1>
 Nodejs app in which users can vote for their favourite OS. Voting numbers are seen LIVE without page reloading which enables the user to see the changes in Live-action.
 
